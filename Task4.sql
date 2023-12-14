@@ -5,8 +5,8 @@ SELECT
     count(vacancy_id) AS items
 FROM vacances
 GROUP BY Year, Month
-ORDER BY items
-OFFSET 11;
+ORDER BY items DESC
+LIMIT 1;
 
 
 -- Наибольшее количество Резюме - месяц (с учетом года)
@@ -16,6 +16,6 @@ SELECT
     count(resume_id) AS items
 FROM resumes
 GROUP BY Year, Month
-ORDER BY items
-OFFSET 11;
+ORDER BY items DESC
+LIMIT 1;
 

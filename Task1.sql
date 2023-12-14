@@ -1,10 +1,10 @@
 -- Соискатели + (1)
     CREATE TABLE persons (
       person_id SERIAL NOT NULL PRIMARY KEY,
-      person_first_name VARCHAR NOT NULL DEFAULT 'Иван',
-      person_second_name VARCHAR NOT NULL DEFAULT 'Иванов',
-      person_middleName VARCHAR DEFAULT 'Иванович',
-      person_phone INT8 NOT NULL DEFAULT 89992223344
+      person_first_name VARCHAR NOT NULL,
+      person_second_name VARCHAR NOT NULL,
+      person_middleName VARCHAR,
+      person_phone INT8 NOT NULL
     );
 
 -- Регионы + (2)
@@ -30,10 +30,10 @@
 -- Резюме + (5)
    CREATE TABLE  resumes (
      resume_id SERIAL NOT NULL PRIMARY KEY,
-     posting_date DATE NOT NULL DEFAULT timestamp '2022-02-24 00:04:00',
+     posting_date DATE NOT NULL,
      person_id INTEGER NOT NULL REFERENCES persons ( person_id ),
      wished_salary INTEGER NOT NULL,
-     wished_area_id INTEGER NOT NULL REFERENCES areas ( area_id ) DEFAULT 77,
+     wished_area_id INTEGER NOT NULL REFERENCES areas ( area_id ),
      wished_specialization_id INTEGER REFERENCES specializations ( sprecialization_id )
 
    );
@@ -42,13 +42,13 @@
     CREATE TABLE vacances (
       vacancy_id SERIAL NOT NULL PRIMARY KEY,
       vacancy_name VARCHAR NOT NULL,
-      posting_date DATE NOT NULL DEFAULT timestamp '2022-02-24 00:04:00',
-      area_id INTEGER NOT NULL REFERENCES areas ( area_id ) DEFAULT 77,
+      posting_date DATE NOT NULL,
+      area_id INTEGER NOT NULL REFERENCES areas ( area_id ),
       vacancy_daily_regime VARCHAR DEFAULT 'Полный',  -- График труда (полный, свободный, частитчный, удаленка)
       vacancy_previous_experience INTEGER DEFAULT 0,  -- Требуемый опыт, лет
       employer_id INTEGER NOT NULL REFERENCES employers ( employer_id ), -- Работодатель
-      compensation_from INTEGER DEFAULT 5000,  -- Зарплата минимум
-      compensation_to INTEGER DEFAULT 10000,  -- Зарплата максимум
+      compensation_from INTEGER,  -- Зарплата минимум
+      compensation_to INTEGER,  -- Зарплата максимум
       compensation_gross BOOLEAN DEFAULT FALSE,  -- НДФЛ 13% учет (Итого = Значение - налог, если TRUE)
       specialization_id INTEGER REFERENCES specializations ( sprecialization_id ) -- код специализации
     );
